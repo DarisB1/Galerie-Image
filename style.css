@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100dvh;
+}
+
+img {
+  width: 350px;
+  height: 250px;
+}
+
+.chat {
+    color: white;
+}
+
+section {
+    padding: 2rem 5rem;
+    margin: 3rem 30rem;
+    border-radius: 50px;
+    text-align: center;
+    background-color: burlywood;
+}
+    
