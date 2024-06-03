@@ -1,103 +1,123 @@
+import { db } from "/images.js";
+
 const body = document.querySelector("body");
 const box = document.querySelector("#box");
 
-const db = [
-  {
-    name: "chat",
-    url: "chat.webp",
-    alt: "chat brun",
-    date: "02-08-2023",
-  },
-  {
-    name: "chien",
-    url: "chien.jpg",
-    alt: "chien brun",
-    date: "20-04-2023",
-  },
-  {
-    name: "gecko",
-    url: "leopard.jpg",
-    alt: "gecko tacheté léopard",
-    date: "12-12-2012",
-  },
-];
-
-function Images() {
-  for (let i = 0; i < db.length; i++) {
-    const div = document.createElement("div");
-    box.appendChild(div);
-    div.innerHTML = `
-    <h1>${db[i].name}</h1>
-    <img src="${db[i].url}" alt="${db[i].alt}">
-    <p>${db[i].date}</p>
-    `;
-  }
+function Galerie() {
+    const ul = document.createElement('ul');
+    ul.className = "allImg";
+    for (let i = 0; i < db.length; i++) {
+        const li = document.createElement('li');
+        li.innerHTML = `
+            <img src="${db[i].url}" alt="${db[i].id}">
+        `;
+        ul.appendChild(li);
+    }
+    box.appendChild(ul);
 }
 
-const inputName = document.querySelector("#inputName");
-const inputUrl = document.querySelector("#inputUrl");
-const inputAlt = document.querySelector("#inputAlt");
-const inputDate = document.querySelector("#inputDate");
-const inputBtn = document.querySelector("#inputBtn");
+Galerie();
 
-function lastIndex() {
-    const div = document.createElement("div");
-    div.className = "imagesBox";
-    box.appendChild(div);
-    const dbReverse = db.reverse();
-    console.log(db);
-    div.innerHTML = `
-      <h1>${db[0].name}</h1>
-      <img src="${db[0].url}" alt="${db[0].alt}">
-      <p>${db[0].date}</p>
-      `;
-  }
+const tous = document.getElementById('tous');
+const sport = document.getElementById("sport");
+const animaux = document.getElementById("animaux");
+const nature = document.getElementById("nature");
+const ville = document.getElementById("ville");
 
-inputBtn.addEventListener("click", () => {
-  db.push({
-    name: inputName.value,
-    url: inputUrl.value,
-    alt: inputAlt.value,
-    date: inputDate.value,
-  });
-  console.log(db);
-  lastIndex()
+tous.addEventListener("click", () => {
+    box.innerHTML = "";
+    const ul = document.createElement('ul');
+    ul.className = "allImg"; 
+    for (let i = 0; i < db.length; i++) {
+        const li = document.createElement('li');
+        li.innerHTML = `
+            <img src="${db[i].url}" alt="${db[i].id}">
+        `;
+        ul.appendChild(li);    
+    }
+    box.appendChild(ul);
 });
 
-Images();
+sport.addEventListener("click", () => {
+    let T = [];
+    for (let i = 0; i < db.length; i++) {
+        if (db[i].category === "sport") {
+            T.push(db[i]);
+        }
+    }
+    box.innerHTML = "";
+    const ul = document.createElement('ul');
+    ul.className = "allImg";
+    for (let i = 0; i < T.length; i++) {
+        const li = document.createElement('li');
+        li.innerHTML = `
+            <img src="${T[i].url}" alt="${T[i].id}">
+        `;
+        ul.appendChild(li);    
+    }
+    box.appendChild(ul);
+});
 
+animaux.addEventListener("click", () => {
+    let T = [];
+    for (let i = 0; i < db.length; i++) {
+        if (db[i].category === "animal") {
+            T.push(db[i]);
+        }
+    }
+    box.innerHTML = "";
+    const ul = document.createElement('ul');
+    ul.className = "allImg";
+    for (let i = 0; i < T.length; i++) {
+        const li = document.createElement('li');
+        li.innerHTML = `
+            <img src="${T[i].url}" alt="${T[i].id}">
+        `;
+        ul.appendChild(li);    
+    }
+    box.appendChild(ul);
+});
 
+nature.addEventListener("click", () => {
+    let T = [];
+    for (let i = 0; i < db.length; i++) {
+        if (db[i].category === "nature") {
+            T.push(db[i]);
+        }
+    }
+    box.innerHTML = "";
+    const ul = document.createElement('ul');
+    ul.className = "allImg";  
+    for (let i = 0; i < T.length; i++) {
+        const li = document.createElement('li');
+        li.innerHTML = `
+            <img src="${T[i].url}" alt="${T[i].id}">
+        `;
+        ul.appendChild(li);    
+    }
+    box.appendChild(ul);
+});
 
-// a voir mercredi aprem
-// function Images() {
-//     const div = document.createElement("div");
-//     body.appendChild(div);
-//     let contenu;
-//   for (let i = 0; i < db.length; i++) {
+ville.addEventListener("click", () => {
+    let T = [];
+    for (let i = 0; i < db.length; i++) {
+        if (db[i].category === "city") {
+            T.push(db[i]);
+        }
+    }
+    box.innerHTML = "";
+    const ul = document.createElement('ul');
+    ul.className = "allImg";  
+    for (let i = 0; i < T.length; i++) {
+        const li = document.createElement('li');
+        li.innerHTML = `
+            <img src="${T[i].url}" alt="${T[i].id}">
+        `;
+        ul.appendChild(li);    
+    }
+    box.appendChild(ul);
+});
 
-//     contenu = `
-//     <h1>${db[i].name}</h1>
-//     <img src="${db[i].url}" alt="${db[i].alt}">
-//     <p>${db[i].date}</p>
-//     `;
-//   }
-//   div.innerHTML = contenu
-// }
-
-// const inputName = document.querySelector("#inputName");
-// const inputUrl = document.querySelector("#inputUrl");
-// const inputAlt = document.querySelector("#inputAlt");
-// const inputBtn = document.querySelector("#inputBtn");
-
-// inputBtn.addEventListener("click", () => {
-//   db.push({
-//     name: inputName.value,
-//     url: inputUrl.value,
-//     alt: inputAlt.value,
-//   });
-//   console.log(db);
-
-//   Images();
-// });
-
-// Images();
+allImg.addEventListener("click", ()=>{
+  console.log(ok);
+})
